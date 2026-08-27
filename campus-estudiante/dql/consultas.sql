@@ -226,3 +226,92 @@ where fecha_ingreso = (select min(fecha_ingreso)
 from estudiantes);
 
 
+-- ## DELETEç
+
+/*
+sintaxis basica:
+
+        delete from nombre_tabla
+        where condición;*/
+
+
+
+-- 1. Eliminar el registro del estudiante con id 34.
+select *
+	from estudiantes
+	where id = 34;
+
+delete from estudiantes
+where id = 34;
+
+-- 2. Borrar todos los estudiantes que estén inactivos.
+select *
+	from estudiantes
+	where activo = false;
+
+delete from estudiantes
+where activo = false;
+
+-- 3. Eliminar a los estudiantes cuyo promedio sea estrictamente menor a 2.5.
+select *
+	from estudiantes
+	where promedio < 2.5;
+
+delete from estudiantes
+where promedio < 2.5;
+
+-- 4. Borrar las filas de estudiantes cuya fecha de ingreso sea anterior al '2021-01-01'.
+select *
+	from estudiantes
+	where fecha_ingreso < '2021-01-01';
+
+delete from estudiantes
+where fecha_ingreso < '2021-01-01';
+
+-- 5. Eliminar a los estudiantes del género masculino que tengan una altura inferior a 1.60 m.
+select *
+	from estudiantes
+	where genero = 'M' and altura < 1.60;
+
+delete from estudiantes
+where genero = 'M' and altura < 1.60;
+
+-- 6. Borrar los registros de estudiantes ingresados en el año 2024 que se encuentren inactivos.
+select *
+	from estudiantes
+	where extract(year from fecha_ingreso) = 2024 and activo = false;
+
+delete from estudiantes
+where extract(year from fecha_ingreso) = 2024 and activo = false;
+
+-- 7. Eliminar a los estudiantes cuya duración de tests sea menor a 45 minutos.
+select *
+	from estudiantes
+	where duracion_tests < '00:45:00';
+
+delete from estudiantes
+where duracion_tests < '00:45:00';
+
+-- 8. Borrar a todos los estudiantes cuyo nombre comience con la letra 'E'.
+select
+		nombre
+	from estudiantes
+	where nombre like '%E%';
+
+delete from estudiantes
+where nombre like '%E%';
+
+-- 9. Eliminar a los estudiantes activos que ingresaron antes del año 2023 y cuyo promedio sea menor a 3.5.
+select *
+	from estudiantes
+	where extract(year from fecha_ingreso) < 2023 and promedio < 3.5;
+
+delete 	from estudiantes
+where extract(year from fecha_ingreso) < 2023 and promedio < 3.5;
+
+-- 10. Vaciar completamente la tabla estudiantes eliminando todos sus registros.
+
+select * from estudiantes;
+
+delete from estudiantes;
+
