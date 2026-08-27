@@ -132,3 +132,97 @@ where hora_ingreso \< '09:00:00'
 
 order by hora_ingreso desc;
 
+
+-- **************************************
+-- ## UPDATE
+-- **************************************
+
+-- 1. Cambiar el estado a inactivo para el estudiante con id 6.
+
+update estudiantes
+set activo = 'false'
+where id = 6;
+
+-- 2. Incrementar en 0.2 el promedio de todos los estudiantes que tengan un promedio menor a 3.0.
+
+update estudiantes
+set promedio = promedio + 0.2
+where promedio < 3.0;
+
+-- 3. Actualizar la hora de ingreso a 08:00:00 para todos los estudiantes que ingresaron el día 2024-02-01.
+
+update estudiantes
+set hora_ingreso = '08:00:00'
+where fecha_ingreso = '2024-02-01';
+
+-- 4. Modificar el análisis de perfil del estudiante con id 15 para agregar la anotación: "Graduado con honores académicos.".
+
+update estudiantes
+set analisis_perfil = 'graduado con honores academicos'
+where id = 15;
+
+select
+		nombre,
+		analisis_perfil
+	from estudiantes
+	where id = 15;
+
+
+-- 5. Cambiar el género a F y actualizar la altura a 1.65 para un estudiante específico cuyo ID sea 20.
+
+update estudiantes
+set genero = 'F', altura = '1.65'
+where id = 20;
+
+select
+nombre,
+genero,
+altura
+from estudiantes
+where id = 20;
+
+-- 6. Desactivar a todos los estudiantes registrados antes del año 2022 que tengan un promedio inferior a 3.5.
+
+update estudiantes
+set activo = false
+where extract(year from fecha_ingreso) = 2022 and promedio < 3.5;
+
+
+-- 7. Ajustar la duración de los tests a 2 horas para todos los estudiantes que actualmente tengan registrada una duración inferior a 1 hora.
+
+update estudiantes
+set duracion_tests = '02:00:00'
+where duracion_tests < '01:00:00';
+
+
+-- 8. Aumentar la edad en 1 año a todos los estudiantes que ingresaron en el año 2021.
+
+update estudiantes
+set edad = edad + 1
+where extract(year from fecha_ingreso) = 2021;
+
+-- 9. Limpiar o establecer como NULL el campo analisis_perfil para los estudiantes inactivos.
+
+select *
+	from estudiantes
+	where activo = false;
+
+update estudiantes
+set analisis_perfil = NULL
+where activo = false;
+
+-- 10. Actualizar el promedio a 5.0 para el estudiante que tenga la fecha de registro más antigua de la base de datos.
+
+select
+		nombre,
+		promedio,
+		fecha_ingreso
+	from estudiantes
+	order by fecha_ingreso asc;
+
+update estudiantes
+set promedio = 5.0
+where fecha_ingreso = (select min(fecha_ingreso)
+from estudiantes);
+
+
