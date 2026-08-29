@@ -1,4 +1,4 @@
-# ventas_vendedores.
+﻿# ventas_vendedores.
 
 esta base de datos fue diseñada para practica lo que son las consultas y tce,
 
