@@ -1,4 +1,3 @@
-
 INSERT INTO ventas_vendedores (fecha, vendedor, monto) VALUES
 ('2026-01-01', 'Juan', 100.00),
 ('2026-01-01', 'Ana', 150.00),
