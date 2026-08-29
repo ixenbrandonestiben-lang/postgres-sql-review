@@ -1,4 +1,4 @@
-﻿create database ventas_vendedores;
+create database ventas_vendedores;
 
 CREATE TABLE ventas_vendedores (
   fecha DATE,
